@@ -1,42 +1,74 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>隨機飲料組合</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <p class="eyebrow">drink-web</p>
+        <h1>隨機飲料組合</h1>
+        <p class="intro">新增茶底與配料，隨機產生今天的飲料。</p>
+      </header>
 
-<!DOCTYPE html>
-<html>
-    <body>
-            <table border="2">
-                <tbody>
-                    <tr><th colspan="10" bgcolor="#4682B4"><font color="#FFFFFF">個人資料</font></th></tr>
-                    <tr>
-                        <th colspan="2" bgcolor="#CCEEFF">中文姓名</th>
-                        <td colspan="3">程惠明</td>
-                        <td colspan="3" rowspan="2" bgcolor="#CCEEFF"><img src="Locket_1694437836526_78.jpg" width="105" height="105"></td>
-                    </tr>
-                    <tr>
-                        <th colspan="2" bgcolor="#CCEEFF">英文姓名</th>
-                        <td colspan="3">CHENG,HUEI-MING</td>
-                    </tr>
-                    <tr>
-                        <th colspan="2" bgcolor="#CCEEFF">生日</th>
-                        <td colspan="3">9月7日</td>
-                        <th colspan="2" bgcolor="#CCEEFF">手機</th>
-                        <td colspan="3"><a href="tel:+0979200752">0979200752</a></td>
-                    </tr>
-                    <tr>
-                        <th colspan="2" bgcolor="#CCEEFF">社團/學生會</th>
-                        <td colspan="3"><a href="https://www.instagram.com/nkustrmc/">搖滾音樂社</a>/實習幹部</td>
-                        <th colspan="2" bgcolor="#CCEEFF">email</th>
-                        <td colspan="3"><a href="mailto:c112156209@nkust.edu.tw">c112156209@nkust.edu.tw</a></td>
-                    </tr>
-                    <tr>
-                        <th colspan="2" bgcolor="#CCEEFF">高職</th>
-                        <td colspan="8">台中家商資處科</td>
-                    </tr>
-                    <tr>
-                        <th colspan="10" bgcolor="#CCEEFF">地址</th>
-                    </tr>
-                    <tr>
-                        <td colspan="10"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2601.27272013915!2d120.40159707827715!3d22.774465857219525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e13f7768fe48f%3A0x32440c26377fa031!2z5ZyL56uL6auY6ZuE56eR5oqA5aSn5a2454eV5bei5qCh5Y2A5a2455Sf5a6_6IiN!5e0!3m2!1szh-TW!2stw!4v1697705482352!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></td>
-                    </tr>
-                </tbody>
-            </table>
-        </body>
-    </html>
+      <section class="app-grid" aria-label="飲料組合工具">
+        <div class="manage-column">
+          <section class="panel list-panel" aria-labelledby="bases-title">
+            <div class="panel-heading">
+              <h2 id="bases-title">茶底</h2>
+              <span class="count-pill" id="base-count">0</span>
+            </div>
+            <div class="chip-list" id="base-list" aria-live="polite"></div>
+            <form class="add-form" id="base-form">
+              <label class="visually-hidden" for="base-input">新增茶底</label>
+              <input id="base-input" type="text" autocomplete="off" placeholder="例如：烏龍茶">
+              <button type="submit">新增</button>
+            </form>
+          </section>
+
+          <section class="panel list-panel" aria-labelledby="toppings-title">
+            <div class="panel-heading">
+              <h2 id="toppings-title">配料</h2>
+              <span class="count-pill" id="topping-count">0</span>
+            </div>
+            <div class="chip-list" id="topping-list" aria-live="polite"></div>
+            <form class="add-form" id="topping-form">
+              <label class="visually-hidden" for="topping-input">新增配料</label>
+              <input id="topping-input" type="text" autocomplete="off" placeholder="例如：珍珠">
+              <button type="submit">新增</button>
+            </form>
+          </section>
+        </div>
+
+        <aside class="control-column">
+          <section class="panel result-panel" aria-labelledby="result-title">
+            <div class="drink-visual" aria-hidden="true">
+              <div class="cup">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <p id="result-title" class="result-label">今天喝</p>
+            <output class="result-text" id="result-output">點一下產生飲料</output>
+          </section>
+
+          <section class="panel control-panel" aria-labelledby="controls-title">
+            <h2 id="controls-title">搭配設定</h2>
+            <label class="field-label" for="combo-count">搭配數量</label>
+            <input id="combo-count" type="number" min="1" value="2" inputmode="numeric">
+            <button class="primary-button" id="generate-button" type="button">隨機產生</button>
+            <p class="notice" id="notice" role="status" aria-live="polite"></p>
+          </section>
+
+          <button class="ghost-button reset-button" id="reset-button" type="button">重置預設</button>
+        </aside>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
